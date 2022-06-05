@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: selfsigned-certificate2
+spec:
+  secretName: hello-deployment-tls-ca-key-pair2
+  dnsNames:
+  - "*.default.svc.cluster.local"
+  - "*.default.com"
+  isCA: false
+  issuerRef:
+    name: hello-deployment-tls
+    kind: ClusterIssuer

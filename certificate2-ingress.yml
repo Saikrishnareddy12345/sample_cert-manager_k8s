@@ -1,0 +1,20 @@
+--- 
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata: 
+  annotations: 
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "hello-deployment-tls"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  name: sonar-ingress
+spec: 
+  tls: 
+  - secretName: "hello-deployment-tls-ca-key-pair2"
+  rules: 
+  - http: 
+      paths: 
+      - pathType: Prefix
+        path: "/"
+        backend: 
+          serviceName: sonarqube
+          servicePort: 80
